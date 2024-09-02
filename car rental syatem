@@ -1,0 +1,82 @@
+#include<iostream>
+#include<string>
+using namespace std;
+struct Car {
+    string company, model;
+    int year, rgno, rent;
+    bool rented;
+};
+void displayCar(const Car& car) {
+    cout<<"Company: "<<car.company<<endl;
+    cout<<"Model: "<<car.model<<endl;
+    cout<<"Year: "<<car.year<<endl;
+    cout<<"Registration No: "<<car.rgno<<endl;
+    cout<<"Rent: RS "<<car.rent<<"/day"<<endl<<endl;
+}
+
+void rentCar(Car& car){
+    if (!car.rented){
+        system("clear");
+        car.rented=true;
+        cout<<"You have successfully rented the following car:"<<endl;
+        displayCar(car);
+    }
+    else {
+        cout<<"This car is already rented."<<endl<<endl;
+    }
+}
+void displayMenu(){
+    cout << "\nCar Rental System Menu:\n";
+    cout << "1. Display All Cars\n";
+    cout << "2. Rent a Car\n";
+    cout << "3. Exit\n";
+    cout << "Enter your choice: ";
+}
+int main(){
+    Car car123 = {"Toyota", "Corolla", 2022, 123, 5000, false};
+    Car car345 = {"Honda", "Civic", 2023, 345, 7000, false};
+    Car car567 = {"Bugatti", "Chiron", 2024, 567, 12000, false};
+    while (true){
+        system("cls");
+        displayMenu();
+        int choice;
+        cin >> choice;
+        system("cls");
+        switch (choice){
+            case 1:
+                cout << "Available Cars:"<<endl;
+                displayCar(car123);
+                displayCar(car345);
+                displayCar(car567);
+                break;
+            case 2:
+                int regNo;
+                cout<<"Enter the Registration Number of the car you want to rent:";
+                cin>>regNo;
+
+                switch(regNo){
+                    case 123:
+                        rentCar(car123);
+                        break;
+                    case 345:
+                        rentCar(car345);
+                        break;
+                    case 567:
+                        rentCar(car567);
+                        break;
+                    default:
+                        cout<<"Invalid Registration Number." <<endl<<endl;
+                }
+                break;
+            case 3:
+                cout<<"Exit the program"<<endl;
+                exit(0);
+            default:
+                cout<<"Invalid choice. Please try again."<<endl<<endl;
+        }
+        cout<<"\nPress Enter to continue...";
+        cin.ignore(); 
+        cin.get();    
+    }
+    return 0;
+}
