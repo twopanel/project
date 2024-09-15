@@ -16,7 +16,7 @@ void displayCar(const Car& car) {
 
 void rentCar(Car& car){
     if (!car.rented){
-        system("clear");
+        system("cls");
         car.rented=true;
         cout<<"You have successfully rented the following car:"<<endl;
         displayCar(car);
